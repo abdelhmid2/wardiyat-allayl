@@ -1,0 +1,1065 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<meta name="color-scheme" content="light"/>
+<link rel="icon" href="data:,"/>
+<title>وردية الليل</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff; --bg2:#f4f8f6; --card:#ffffff; --line:#dcebe4;
+  --ink:#10231c; --muted:#4a6359; --soft:#eef6f2;
+  --green:#0a6b4f; --green2:#0d8563; --green-dark:#074c38;
+  --gold:#b8860b; --gold-bg:#fdf6e0; --red:#b42318;
+  --radius:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:18px;line-height:1.75}
+button,input,textarea,select{min-height:48px;font-family:inherit;font-size:17px}
+a{color:var(--green)}
+.quran,.hadith-text{font-family:"Amiri",serif}
+
+/* Section nav (below the shift clock, not a top bar) */
+.nav{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:14px}
+.nav a{text-decoration:none;color:var(--ink);font-weight:600;font-size:15.5px;padding:10px 12px;border-radius:999px;border:1.5px solid var(--line);background:#fff;min-height:44px;display:inline-flex;align-items:center;gap:6px}
+.nav a:hover,.nav a:focus{background:var(--soft);border-color:var(--green)}
+.nav .nicon{font-size:17px;line-height:1}
+
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px 56px}
+
+/* Hero */
+.hero{padding:28px 0 8px;text-align:center}
+.hero h1{font-size:clamp(30px,6vw,46px);line-height:1.25;margin:0 0 8px;color:var(--green-dark);font-weight:800}
+.hero h1 span{color:var(--green2)}
+.hero p{color:var(--muted);font-size:19px;margin:0 auto;max-width:640px}
+.hero-badge{display:inline-block;background:var(--gold-bg);color:#7a5c00;border:1.5px solid #ecd27a;font-weight:700;font-size:15px;padding:6px 16px;border-radius:999px;margin-bottom:14px}
+
+/* Live dashboard */
+.live-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0 12px}
+@media(max-width:760px){.live-grid{grid-template-columns:1fr 1fr}}
+.live-card{background:var(--bg2);border:2px solid var(--line);border-radius:var(--radius);padding:16px 14px;text-align:center}
+.live-card .lbl{font-size:15px;color:var(--muted);font-weight:700}
+.live-card .val{font-size:30px;font-weight:800;color:var(--green-dark);line-height:1.3;font-variant-numeric:tabular-nums}
+.live-card .sub{font-size:14.5px;color:var(--muted)}
+.live-card.highlight{background:var(--green);border-color:var(--green)}
+.live-card.highlight .lbl,.live-card.highlight .sub{color:#d6efe4}
+.live-card.highlight .val{color:#fff}
+
+.progress-wrap{background:#fff;border:2px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:12px}
+.progress-head{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-weight:700;font-size:16px}
+.progress-track{height:16px;background:var(--soft);border-radius:999px;overflow:hidden;margin-top:10px;border:1px solid var(--line)}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--green),#25a97c);width:0%;transition:width 1s linear;border-radius:999px}
+.progress-hours{display:flex;justify-content:space-between;font-size:13.5px;color:var(--muted);margin-top:6px}
+
+.notif-bar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:var(--gold-bg);border:2px solid #ecd27a;border-radius:var(--radius);padding:16px;margin:14px 0 6px}
+.notif-bar .txt{flex:1;min-width:220px}
+.notif-bar .txt b{display:block;font-size:18px}
+.notif-bar .txt span{color:#6b5a12;font-size:15.5px}
+.btn{border:none;cursor:pointer;border-radius:14px;padding:12px 22px;font-weight:800;background:var(--green);color:#fff}
+.btn:hover{background:var(--green2)}
+.btn.secondary{background:#fff;color:var(--green-dark);border:2px solid var(--green)}
+.btn.gold{background:#8a6508}
+.btn.small{padding:8px 16px;min-height:44px;font-size:16px}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.notif-status{font-weight:700;font-size:15px}
+
+/* Shift top banner - first thing on page */
+.shift-top{background:var(--green-dark);color:#fff;border-radius:20px;padding:18px 16px 14px;margin-top:14px;text-align:center;box-shadow:0 8px 24px rgba(7,76,56,.18)}
+.shift-top .st-label{font-size:15px;font-weight:700;color:#bfe8d6;letter-spacing:.2px}
+.shift-top .st-clock{font-size:clamp(38px,9vw,54px);font-weight:800;line-height:1.15;font-variant-numeric:tabular-nums}
+.shift-top .st-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+.shift-top .st-pill{background:rgba(255,255,255,.14);border:1.5px solid rgba(255,255,255,.25);border-radius:999px;padding:7px 14px;font-weight:700;font-size:15.5px}
+.shift-top .st-pill.gold{background:#f5c542;color:#231a00;border-color:#f5c542}
+.shift-top .st-date{color:#d6efe4;font-size:15px;margin-top:6px}
+
+/* Sections unified */
+section{margin-top:38px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.sec-num{width:52px;height:52px;border-radius:16px;background:var(--green);color:#fff;display:grid;place-items:center;font-size:26px;flex-shrink:0;box-shadow:0 4px 12px rgba(10,107,79,.2)}
+.sec-head h2{margin:0;font-size:clamp(23px,4.5vw,30px);color:var(--green-dark)}
+.sec-desc{color:var(--muted);margin:0 0 16px;font-size:17px}
+
+/* Ranking */
+.rank-box{border:2px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#fff}
+.rank-top{display:flex;gap:12px;align-items:center;background:var(--gold-bg);border-bottom:2px solid #ecd27a;padding:16px;flex-wrap:wrap}
+.rank-top .crown{font-size:36px;line-height:1}
+.rank-top .rt{flex:1;min-width:200px}
+.rank-top .rt b{font-size:19px;display:block;line-height:1.4}
+.rank-top .rt span{font-size:15px;color:#6b5a12}
+.rank-list{list-style:none;margin:0;padding:0}
+.rank-item{display:flex;align-items:center;gap:12px;padding:13px 16px;border-bottom:1.5px solid var(--line)}
+.rank-item:last-child{border-bottom:none}
+.rank-item.me{background:var(--soft)}
+.rank-pos{width:40px;height:40px;border-radius:50%;background:var(--bg2);border:2px solid var(--line);display:grid;place-items:center;font-weight:800;flex-shrink:0}
+.rank-item:nth-child(1) .rank-pos{background:#f5c542;border-color:#d9a400}
+.rank-item:nth-child(2) .rank-pos{background:#e8e8e8}
+.rank-item:nth-child(3) .rank-pos{background:#f3d5b5}
+.rank-name{font-weight:800;flex:1;min-width:120px}
+.rank-name small{display:block;font-weight:600;color:var(--muted);font-size:13.5px}
+.rank-score{text-align:center;min-width:74px}
+.rank-score b{font-size:20px;color:var(--green-dark);display:block;line-height:1.2}
+.rank-score span{font-size:13px;color:var(--muted);font-weight:700}
+.rank-empty{padding:22px 16px;text-align:center;color:var(--muted)}
+.rank-note{font-size:14.5px;color:var(--muted);background:var(--bg2);padding:10px 14px;border-top:1.5px dashed var(--line)}
+
+/* Prayer */
+.prayer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:760px){.prayer-grid{grid-template-columns:1fr 1fr}}
+.prayer-card{border:2px solid var(--line);border-radius:var(--radius);padding:16px;text-align:center;background:#fff}
+.prayer-card.next{border-color:var(--green);background:var(--soft);box-shadow:0 0 0 3px #cdeee0}
+.prayer-card .pname{font-weight:800;font-size:19px}
+.prayer-card .ptime{font-size:28px;font-weight:800;color:var(--green-dark);font-variant-numeric:tabular-nums;line-height:1.4}
+.prayer-card .ptag{font-size:13.5px;background:var(--green);color:#fff;border-radius:999px;padding:2px 12px;font-weight:700;display:none}
+.prayer-card.next .ptag{display:inline-block}
+.prayer-note{font-size:15px;color:var(--muted);background:var(--bg2);border:1.5px dashed var(--line);border-radius:12px;padding:10px 14px;margin-top:12px}
+
+/* Timeline - connected */
+.timeline{position:relative;padding-inline-start:26px}
+.timeline::before{content:"";position:absolute;inset-inline-start:10px;top:14px;bottom:14px;width:4px;border-radius:4px;background:linear-gradient(180deg,var(--green),#9fd4bd)}
+.hour-card{position:relative;background:#fff;border:2px solid var(--line);border-radius:var(--radius);margin-bottom:14px;overflow:hidden}
+.hour-card::before{content:"";position:absolute;inset-inline-start:-23px;top:26px;width:16px;height:16px;border-radius:50%;background:#fff;border:4px solid var(--green);z-index:2}
+.hour-card.current{border-color:var(--green);box-shadow:0 6px 24px rgba(10,107,79,.16)}
+.hour-card.current::before{background:var(--gold);border-color:var(--gold)}
+.hour-head{width:100%;background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:12px;padding:16px;text-align:right;min-height:64px}
+.hour-time{background:var(--green-dark);color:#fff;font-weight:800;border-radius:12px;padding:6px 12px;font-size:16px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.hour-card.current .hour-time{background:var(--gold);color:#231a00}
+.hour-title{font-weight:800;font-size:19px;flex:1}
+.now-badge{background:var(--gold);color:#231a00;font-weight:800;font-size:13.5px;border-radius:999px;padding:3px 12px;display:none}
+.hour-card.current .now-badge{display:inline-block}
+.hour-arrow{color:var(--muted);font-size:20px;transition:transform .25s}
+.hour-card.open .hour-arrow{transform:rotate(180deg)}
+.hour-body{display:none;padding:0 16px 18px;border-top:1.5px solid var(--line)}
+.hour-card.open .hour-body{display:block}
+.block{margin-top:14px}
+.block h4{margin:0 0 4px;font-size:16.5px;color:var(--green);display:flex;align-items:center;gap:8px}
+.block p{margin:0;font-size:17.5px}
+.block .hadith-text{font-size:20px;line-height:2;background:var(--soft);border-radius:12px;padding:12px 14px}
+.block .src{font-size:14.5px;color:#7a5c00;background:var(--gold-bg);display:inline-block;padding:2px 12px;border-radius:999px;font-weight:700;margin-top:6px}
+.block .explain{color:var(--muted);font-size:16px}
+.block .dua{background:#fff8e1;border:1.5px solid #ecd27a;border-radius:12px;padding:12px 14px;font-size:18px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.chip{background:var(--soft);border:1.5px solid var(--line);border-radius:999px;padding:6px 14px;font-weight:700;font-size:15.5px}
+
+/* Tasbeeh */
+.tasbeeh-box{background:var(--bg2);border:2px solid var(--line);border-radius:22px;padding:22px;text-align:center}
+.dhikr-tabs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:18px}
+.dhikr-tabs button{border:2px solid var(--line);background:#fff;border-radius:999px;padding:10px 18px;font-weight:700;cursor:pointer;min-height:48px}
+.dhikr-tabs button.active{background:var(--green);color:#fff;border-color:var(--green)}
+.tasbeeh-count{font-size:84px;font-weight:800;color:var(--green-dark);line-height:1.1;font-variant-numeric:tabular-nums}
+.tasbeeh-target{color:var(--muted);font-weight:700}
+.tasbeeh-btn{width:170px;height:170px;border-radius:50%;border:none;background:var(--green);color:#fff;font-size:24px;font-weight:800;cursor:pointer;margin:16px auto;display:block;box-shadow:0 10px 0 var(--green-dark)}
+.tasbeeh-btn:active{transform:translateY(6px);box-shadow:0 4px 0 var(--green-dark)}
+.tasbeeh-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;align-items:center}
+.total-line{font-weight:700;color:var(--muted)}
+
+/* Verses */
+.verse-card{border:2px solid var(--line);border-radius:var(--radius);padding:20px;margin-bottom:12px;background:#fff}
+.verse-card .quran{font-size:24px;line-height:2.1;text-align:center;color:var(--green-dark)}
+.verse-card .ref{text-align:center;font-weight:800;color:var(--gold);font-size:15.5px;margin:4px 0 8px}
+.verse-card .tafsir{color:var(--muted);font-size:16.5px;border-top:1.5px dashed var(--line);padding-top:10px}
+.verse-card .tafsir b{color:var(--ink)}
+
+/* Register + Chat */
+.public-note{background:#fff4f4;border:2px solid #f0c4c0;border-radius:var(--radius);padding:16px 18px;margin-bottom:16px}
+.public-note b{color:var(--red)}
+.public-note p{margin:4px 0 0;font-size:16.5px}
+.join-box{background:var(--bg2);border:2px solid var(--line);border-radius:var(--radius);padding:20px}
+.join-box label{font-weight:800;display:block;margin-bottom:6px}
+.join-row{display:flex;gap:10px;flex-wrap:wrap}
+.join-row input{flex:1;min-width:200px;border:2px solid var(--line);border-radius:14px;padding:12px 16px;background:#fff}
+.join-row input:focus{outline:none;border-color:var(--green)}
+.form-msg{font-weight:700;font-size:15.5px;margin-top:8px;min-height:24px}
+.form-msg.err{color:var(--red)} .form-msg.ok{color:var(--green)}
+.welcome{display:none;background:var(--soft);border:2px solid var(--green);border-radius:var(--radius);padding:16px 20px;align-items:center;gap:12px;flex-wrap:wrap}
+.welcome.show{display:flex}
+.welcome .avatar{width:52px;height:52px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;font-size:24px;font-weight:800}
+.chat-box{border:2px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-top:16px;background:#fff}
+.chat-msgs{height:340px;overflow-y:auto;padding:16px;background:var(--bg2);display:flex;flex-direction:column;gap:10px}
+.chat-empty{margin:auto;text-align:center;color:var(--muted);font-size:16.5px;padding:20px}
+.msg{max-width:82%;padding:10px 14px;border-radius:16px;background:#fff;border:1.5px solid var(--line);align-self:flex-start}
+.msg.mine{background:var(--green);color:#fff;border-color:var(--green);align-self:flex-end}
+.msg .mname{font-weight:800;font-size:14px;color:var(--green)}
+.msg.mine .mname{color:#ffe98a}
+.msg .mtime{font-size:12.5px;opacity:.75}
+.msg.system{align-self:center;background:var(--gold-bg);border-color:#ecd27a;font-size:14.5px;text-align:center;max-width:95%}
+.chat-input{display:flex;gap:10px;padding:12px;border-top:2px solid var(--line);background:#fff;flex-wrap:wrap}
+.chat-input input{flex:1;min-width:180px;border:2px solid var(--line);border-radius:14px;padding:12px 16px}
+.chat-input input:focus{outline:none;border-color:var(--green)}
+.chat-input input:disabled{background:var(--bg2)}
+
+
+/* Auth (Firebase) + Firestore rules */
+.auth-tabs{display:flex;gap:8px;margin-bottom:16px}
+.auth-tabs button{flex:1;border:2px solid var(--line);background:#fff;border-radius:12px;font-weight:800;cursor:pointer;padding:10px}
+.auth-tabs button.active{background:var(--green);color:#fff;border-color:var(--green)}
+.field{margin-bottom:12px}
+.field label{font-weight:800;display:block;margin-bottom:6px}
+.field input{width:100%;border:2px solid var(--line);border-radius:14px;padding:12px 16px;background:#fff}
+.field input:focus{outline:none;border-color:var(--green)}
+.link-btn{background:none;border:none;color:var(--green);font-weight:700;cursor:pointer;min-height:44px;padding:6px 4px;text-decoration:underline;font-size:15.5px}
+.fb-alert{display:none;background:#fff4f4;border:2px solid #f0c4c0;border-radius:12px;padding:12px 14px;color:var(--red);font-weight:700;font-size:15.5px;margin-top:14px}
+.fb-alert.show{display:block}
+.rules-box{border:2px solid #ecd27a;background:var(--gold-bg);border-radius:var(--radius);padding:16px 18px;margin-top:16px}
+.rules-box summary{font-weight:800;cursor:pointer;font-size:17.5px;color:#7a5c00}
+.rules-box ol{margin:10px 0;padding-inline-start:22px;font-size:16px}
+.rules-box pre{direction:ltr;text-align:left;background:#10231c;color:#d6efe4;border-radius:12px;padding:14px;overflow-x:auto;font-size:13px;line-height:1.6;white-space:pre;font-family:ui-monospace,Menlo,Consolas,monospace}
+footer{margin-top:44px;border-top:2px solid var(--line);padding-top:20px;text-align:center;color:var(--muted);font-size:15.5px}
+footer b{color:var(--green-dark)}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- SHIFT CLOCK - FIRST THING ON THE PAGE -->
+  <div class="shift-top" id="top">
+    <div class="st-label">🕘 ساعة الوردية — الآن</div>
+    <div class="st-clock" id="clockTop">--:--:--</div>
+    <div class="st-date" id="dateTop">—</div>
+    <div class="st-row">
+      <span class="st-pill gold" id="shiftTopPill">⏳ المتبقي: —</span>
+      <span class="st-pill" id="shiftTopState">الوردية ٩ مساءً – ٩ صباحًا</span>
+      <span class="st-pill">🌙 <span id="shiftTopHour">—</span></span>
+    </div>
+  </div>
+
+  <nav class="nav" aria-label="أقسام الموقع">
+    <a href="#prayers"><span class="nicon">🕌</span> الصلاة</a>
+    <a href="#hours"><span class="nicon">🌙</span> فقرات الليل</a>
+    <a href="#tasbeeh"><span class="nicon">📿</span> السبحة</a>
+    <a href="#ranking"><span class="nicon">🏆</span> الترتيب</a>
+    <a href="#verses"><span class="nicon">📖</span> آيات</a>
+    <a href="#chat"><span class="nicon">💬</span> الشات</a>
+  </nav>
+
+  <div class="live-grid">
+    <div class="live-card highlight">
+      <div class="lbl">الوقت الآن</div>
+      <div class="val" id="clockNow">--:--:--</div>
+      <div class="sub" id="dateNow">—</div>
+    </div>
+    <div class="live-card">
+      <div class="lbl" id="shiftLbl">حالة الوردية</div>
+      <div class="val" id="shiftVal">—</div>
+      <div class="sub" id="shiftSub">الوردية من ٩ مساءً لـ ٩ صباحًا</div>
+    </div>
+    <div class="live-card">
+      <div class="lbl">الصلاة القادمة</div>
+      <div class="val" id="nextPrayerVal">—</div>
+      <div class="sub" id="nextPrayerSub">عدّاد تنازلي مباشر</div>
+    </div>
+    <div class="live-card">
+      <div class="lbl">فقرة الليل الحالية</div>
+      <div class="val" id="curHourVal" style="font-size:22px;padding-top:6px">—</div>
+      <div class="sub" id="curHourSub">افتحها من فقرات الليل تحت</div>
+    </div>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-head"><span id="progressTitle">تقدّم الوردية</span><span id="progressPct">٠٪</span></div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-hours"><span>٩ مساءً — بداية الوردية</span><span>٩ صباحًا — نهايتها</span></div>
+  </div>
+
+  <div class="notif-bar">
+    <div class="txt">
+      <b>🔔 إشعارات الفقرات والصلاة</b>
+      <span>فعّل الإشعارات عشان توصلك تنبيهات بداية كل فقرة ومواعيد الصلاة على جهازك.</span>
+    </div>
+    <button class="btn gold" id="notifBtn" type="button">تفعيل الإشعارات</button>
+    <span class="notif-status" id="notifStatus"></span>
+  </div>
+
+  <!-- PRAYERS -->
+  <section id="prayers">
+    <div class="sec-head"><div class="sec-num" aria-hidden="true">🕌</div><h2>مواقيت الصلاة — القاهرة</h2></div>
+    <p class="sec-desc">محسوبة فلكيًا كل يوم لمدينة القاهرة (بمعيار الهيئة المصرية العامة للمساحة: الفجر ١٩٫٥° والعشاء ١٧٫٥°)، وتتحدث تلقائيًا مع العدّاد التنازلي للصلاة القادمة.</p>
+    <div class="prayer-grid" id="prayerGrid"></div>
+    <div class="prayer-note">تنبيه: المواقيت حساب فلكي تقريبي للاسترشاد، وقد تختلف دقائق بسيطة عن المواقيت الرسمية المعلنة في منطقتك — راجع النتيجة الرسمية عند الحاجة.</div>
+  </section>
+
+  <!-- HOURS -->
+  <section id="hours">
+    <div class="sec-head"><div class="sec-num" aria-hidden="true">🌙</div><h2>فقرات الليل — ١٢ ساعة متصلة</h2></div>
+    <p class="sec-desc">الليل كله سلسلة واحدة من ٩ مساءً لـ ٩ صباحًا. الفقرة اللي إحنا فيها دلوقتي مميزة بلون ذهبي وبتتفتح لوحدها. دوس على أي فقرة عشان تفتحها وتقرأ أذكارها وحديثها ودعاءها.</p>
+    <div class="timeline" id="timeline"></div>
+  </section>
+
+  <!-- TASBEEH -->
+  <section id="tasbeeh">
+    <div class="sec-head"><div class="sec-num" aria-hidden="true">📿</div><h2>السبحة الإلكترونية</h2></div>
+    <p class="sec-desc">اختار الذكر ودوس على الدايرة الكبيرة. الهدف بيتبدل بين ٣٣ و ١٠٠. كل تسبيحة بتتحسب لك في <a href="#ranking">قسم الترتيب</a> تحت — سجّل دخولك بالإيميل الأول في قسم الشات عشان تسبيحك يتحفظ باسمك ويظهر في الترتيب المشترك بين كل المستخدمين.</p>
+    <div class="tasbeeh-box">
+      <div class="dhikr-tabs" id="dhikrTabs"></div>
+      <div class="tasbeeh-count" id="tasCount">٠</div>
+      <div class="tasbeeh-target" id="tasTarget">الهدف: ٣٣</div>
+      <button class="tasbeeh-btn" id="tasBtn" type="button">سبّح</button>
+      <div class="tasbeeh-row">
+        <button class="btn secondary small" id="tasReset" type="button">تصفير الذكر الحالي</button>
+        <button class="btn secondary small" id="tasGoal" type="button">تبديل الهدف: ٣٣ / ١٠٠</button>
+        <span class="total-line">المجموع الكلي: <span id="tasTotal">٠</span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- RANKING -->
+  <section id="ranking">
+    <div class="sec-head"><div class="sec-num" aria-hidden="true">🏆</div><h2>الترتيب — الأكثر تسبيحًا واستخدامًا</h2></div>
+    <p class="sec-desc">الترتيب بيبدأ فاضي تمامًا، وبيظهر فيه فقط مستخدمون حقيقيون سجّلوا حساباتهم بالإيميل وسبّحوا أو كتبوا فعلًا: كل تسبيحة = نقطة، وكل رسالة في الشات = ٥ نقاط. الترتيب محفوظ في قاعدة بيانات Firebase ومشترك بين كل المستخدمين على كل الأجهزة، وصاحب المركز الأول بيظهر على القمة هنا.</p>
+    <div class="rank-box">
+      <div class="rank-top">
+        <div class="crown" aria-hidden="true">👑</div>
+        <div class="rt"><b id="rankTopName">الترتيب فاضي — لسه محدش سبّح أو كتب</b><span id="rankTopSub">سجّل دخولك بالإيميل في قسم الشات، وابدأ التسبيح من السبحة فوق، واسمك هيظهر هنا بنشاطك الحقيقي بس.</span></div>
+        <a class="btn small" href="#tasbeeh" style="text-decoration:none">ابدأ التسبيح 📿</a>
+      </div>
+      <div id="rankEmpty" class="rank-empty">سجّل دخولك بالإيميل في قسم الشات عشان تشوف الترتيب المشترك بين كل المستخدمين.</div>
+      <ol class="rank-list" id="rankList"></ol>
+      <div class="rank-note">📌 الترتيب ده حقيقي ومشترك: بيتحفظ في Cloud Firestore وبيظهر بنفس الشكل لكل المستخدمين على أي جهاز، وبيتحدث مباشرة مع كل تسبيحة ورسالة جديدة.</div>
+    </div>
+  </section>
+
+  <!-- VERSES -->
+  <section id="verses">
+    <div class="sec-head"><div class="sec-num" aria-hidden="true">📖</div><h2>آيات مختارة عن قيام الليل</h2></div>
+    <p class="sec-desc">آيات من كتاب الله عن التهجد والاستغفار بالأسحار، مع شرح مبسط لمعناها.</p>
+    <div id="versesList"></div>
+  </section>
+
+  <!-- REGISTER + CHAT (Firebase Auth + Firestore) -->
+  <section id="chat">
+    <div class="sec-head"><div class="sec-num" aria-hidden="true">💬</div><h2>التسجيل والشات الجماعي</h2></div>
+    <p class="sec-desc">سجّل حسابك بالإيميل وكلمة السر، وبعدها هتقدر تشارك في الشات الجماعي الحقيقي: الرسائل بتتحفظ في قاعدة بيانات Firebase وبتظهر لكل المستخدمين على كل الأجهزة، واسمك بيظهر في الترتيب بنشاطك الحقيقي بس.</p>
+
+    <div class="join-box" id="authBox">
+      <div class="auth-tabs">
+        <button type="button" id="tabLogin" class="active">تسجيل الدخول</button>
+        <button type="button" id="tabRegister">حساب جديد</button>
+      </div>
+      <div class="field" id="nameField" style="display:none">
+        <label for="nameInput">اسمك (هيظهر في الشات والترتيب)</label>
+        <input id="nameInput" type="text" placeholder="اكتب اسمك هنا" maxlength="30" autocomplete="name"/>
+      </div>
+      <div class="field">
+        <label for="emailInput">البريد الإلكتروني</label>
+        <input id="emailInput" type="email" dir="ltr" style="text-align:left" placeholder="example@mail.com" autocomplete="email"/>
+      </div>
+      <div class="field">
+        <label for="passInput">كلمة السر</label>
+        <input id="passInput" type="password" placeholder="٦ حروف أو أرقام على الأقل" autocomplete="current-password"/>
+      </div>
+      <button class="btn" id="authBtn" type="button" style="width:100%">تسجيل الدخول</button>
+      <div style="text-align:center"><button class="link-btn" id="resetBtn" type="button">نسيت كلمة السر؟ ابعت رابط تغييرها على إيميلك</button></div>
+      <div class="form-msg" id="authMsg"></div>
+    </div>
+
+    <div class="welcome" id="welcomeBox">
+      <div class="avatar" id="welcomeAvatar">؟</div>
+      <div style="flex:1;min-width:180px"><b id="welcomeText" style="font-size:19px"></b><div style="color:var(--muted);font-size:15px" id="welcomeEmail"></div></div>
+      <button class="btn secondary small" id="editNameBtn" type="button">تغيير الاسم</button>
+      <button class="btn secondary small" id="logoutBtn" type="button">تسجيل الخروج</button>
+      <div id="editNameRow" style="display:none;width:100%;gap:10px;flex-wrap:wrap">
+        <input id="editNameInput" type="text" maxlength="30" placeholder="الاسم الجديد" style="flex:1;min-width:180px;border:2px solid var(--line);border-radius:14px;padding:10px 14px;background:#fff"/>
+        <button class="btn small" id="saveNameBtn" type="button">حفظ الاسم</button>
+      </div>
+    </div>
+
+    <div class="fb-alert" id="fbAlert" role="alert"></div>
+
+    <div class="chat-box">
+      <div class="chat-msgs" id="chatMsgs">
+        <div class="chat-empty" id="chatEmpty">سجّل دخولك بالإيميل عشان تشوف الشات الجماعي وتشارك فيه.<br/>الشات بيبدأ فاضي تمامًا، وبيظهر فيه فقط رسائل حقيقية كتبها مستخدمون حقيقيون، وبتتحفظ وبتوصل لكل المستخدمين على كل الأجهزة.</div>
+      </div>
+      <div class="chat-input">
+        <input id="chatInput" type="text" placeholder="سجّل دخولك الأول عشان تبعت…" maxlength="300" disabled/>
+        <button class="btn" id="sendBtn" type="button" disabled>إرسال</button>
+      </div>
+    </div>
+
+    <details class="rules-box" id="rulesBox">
+      <summary>🔐 لصاحب المشروع: قواعد Firestore المطلوبة عشان الشات والترتيب يشتغلوا</summary>
+      <p style="margin:8px 0">قاعدة بيانات مشروع <b>wardiyat-allayl</b> شغالة في وضع الإنتاج، فهي بترفض أي قراءة أو كتابة لحد ما القواعد دي تتنشر. من غيرها الشات والترتيب مش هيشتغلوا، وبمجرد نشرها هيشتغلوا فورًا من غير أي تغيير في الموقع:</p>
+      <ol>
+        <li>افتح <b>Firebase Console</b> وادخل مشروع <b>wardiyat-allayl</b>.</li>
+        <li>من القائمة اختار <b>Build ← Firestore Database</b>، وبعدين تبويب <b>Rules</b>.</li>
+        <li>امسح القواعد الموجودة والصق القواعد دي مكانها بالكامل.</li>
+        <li>دوس <b>Publish</b>، وبعدين حدّث صفحة الموقع هنا — الشات والترتيب هيشتغلوا على طول.</li>
+      </ol>
+      <pre id="rulesCode">rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Users &amp; ranking: any signed-in user can read.
+    // Each user can create and update only their own document.
+    match /users/{userId} {
+      allow read: if request.auth != null;
+      allow create, update: if request.auth != null &amp;&amp; request.auth.uid == userId;
+      allow delete: if false;
+    }
+
+    // Group chat messages: any signed-in user can read.
+    // A user can only send a message under their own uid,
+    // and no message can be edited or deleted afterwards.
+    match /messages/{messageId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null
+        &amp;&amp; request.resource.data.uid == request.auth.uid
+        &amp;&amp; request.resource.data.text is string
+        &amp;&amp; request.resource.data.text.size() &gt; 0
+        &amp;&amp; request.resource.data.text.size() &lt;= 300;
+      allow update, delete: if false;
+    }
+  }
+}</pre>
+      <button class="btn secondary small" id="copyRulesBtn" type="button">نسخ القواعد</button>
+      <span id="copyRulesMsg" style="font-weight:700;color:var(--green)"></span>
+      <p style="margin:10px 0 0;font-size:15.5px">القواعد دي آمنة: محدش يقدر يقرأ الشات أو الترتيب من غير ما يسجّل دخوله، وكل مستخدم يقدر يعدّل ملفه ونقاطه هو بس، ومفيش أي حد يقدر يعدّل أو يمسح رسالة بعد ما اتبعتت.</p>
+    </details>
+  </section>
+
+  <footer>
+    الأحاديث الواردة هنا من الصحيحين وكتب السنة المعتمدة، مع ذكر المصدر باختصار بجانب كل حديث. تقبل الله منا ومنكم صالح الأعمال.
+    <div style="margin-top:18px;padding-top:16px;border-top:1.5px dashed var(--line)">
+      <div style="font-size:14px;color:var(--muted)">طوّره</div>
+      <div style="font-size:21px;font-weight:800;color:var(--green-dark)">المهندس عبد الحميد إبراهيم</div>
+    </div>
+  </footer>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>
+/* ============ DATA: 12 HOURS ============ */
+var HOURS = [
+ {t:"٩ – ١٠ مساءً", start:21, title:"بداية الليل — النية وأذكار المساء",
+  adhkar:["آية الكرسي (مرة واحدة)","سورة الإخلاص والمعوذتين (٣ مرات)","أمسينا وأمسى الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له"],
+  istighfar:"أستغفر الله العظيم الذي لا إله إلا هو الحي القيوم وأتوب إليه — ١٠٠ مرة",
+  hadith:"أَحَبُّ الأَعْمَالِ إِلَى اللَّهِ الصَّلَاةُ عَلَى وَقْتِهَا، ثُمَّ بِرُّ الْوَالِدَيْنِ، ثُمَّ الْجِهَادُ فِي سَبِيلِ اللَّهِ",
+  src:"متفق عليه — البخاري ومسلم",
+  explain:"الصلاة في أول وقتها أحب عمل لربنا، فابدأ ليلتك بصلاة العشاء في وقتها ونيّة صادقة للقيام.",
+  dua:"اللهم إني أسألك قلبًا خاشعًا ولسانًا ذاكرًا، وأعوذ بك من قلب لا يخشع ومن نفس لا تشبع."},
+ {t:"١٠ – ١١ مساءً", start:22, title:"صلاة العشاء والوتر — ختام صلوات اليوم",
+  adhkar:["سبحان الله (٣٣ مرة)","الحمد لله (٣٣ مرة)","الله أكبر (٣٣ مرة)","لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير (مرة)"],
+  istighfar:"أستغفر الله — ١٠٠ مرة بهدوء وحضور قلب",
+  hadith:"أَفْضَلُ الصَّلَاةِ بَعْدَ الْفَرِيضَةِ صَلَاةُ اللَّيْلِ",
+  src:"رواه مسلم",
+  explain:"بعد الفرائض، أفضل صلاة هي صلاة الليل؛ لأنها في الخفاء وبعيدة عن الرياء، وفيها قرب خاص من الله.",
+  dua:"اللهم اجعل لي في هذه الليلة نصيبًا من رحمتك وهدايتك، واكتبني عندك من الذاكرين."},
+ {t:"١١ – ١٢ منتصف الليل", start:23, title:"أول الليل — الذكر والقرآن",
+  adhkar:["سبحان الله وبحمده (١٠٠ مرة)","لا حول ولا قوة إلا بالله (١٠٠ مرة)"],
+  istighfar:"ربِّ اغفر لي وتب عليَّ إنك أنت التواب الرحيم — ١٠٠ مرة",
+  hadith:"مَثَلُ الَّذِي يَذْكُرُ رَبَّهُ وَالَّذِي لَا يَذْكُرُ رَبَّهُ مَثَلُ الْحَيِّ وَالْمَيِّتِ",
+  src:"رواه البخاري",
+  explain:"الذكر حياة القلب؛ من ذكر الله قلبه حي قريب من ربه، ومن غفل عنه قلبه ميت ولو كان جسده حيًا.",
+  dua:"اللهم أحيِ قلبي بذكرك، ولا تجعلني من الغافلين، وارزقني لذة مناجاتك في جوف الليل."},
+ {t:"١٢ – ١ صباحًا", start:0, title:"منتصف الليل — بداية جوف الليل",
+  adhkar:["يا حي يا قيوم برحمتك أستغيث (٤٠ مرة)","حسبنا الله ونعم الوكيل (١٠٠ مرة)"],
+  istighfar:"أستغفر الله العظيم وأتوب إليه — ١٠٠ مرة",
+  hadith:"إِنَّ فِي اللَّيْلِ لَسَاعَةً لَا يُوَافِقُهَا رَجُلٌ مُسْلِمٌ يَسْأَلُ اللَّهَ خَيْرًا مِنْ أَمْرِ الدُّنْيَا وَالْآخِرَةِ إِلَّا أَعْطَاهُ إِيَّاهُ، وَذَلِكَ كُلَّ لَيْلَةٍ",
+  src:"رواه مسلم",
+  explain:"في كل ليلة ساعة إجابة لا يرد الله فيها سائلًا؛ فأكثر من الدعاء في جوف الليل ولا تيأس.",
+  dua:"اللهم إني أسألك من الخير كله عاجله وآجله، ما علمت منه وما لم أعلم، وأعوذ بك من الشر كله عاجله وآجله."},
+ {t:"١ – ٢ صباحًا", start:1, title:"سيد الاستغفار والتوبة",
+  adhkar:["سيد الاستغفار: اللهم أنت ربي لا إله إلا أنت، خلقتني وأنا عبدك، وأنا على عهدك ووعدك ما استطعت، أعوذ بك من شر ما صنعت، أبوء لك بنعمتك عليَّ وأبوء بذنبي فاغفر لي، فإنه لا يغفر الذنوب إلا أنت","اللهم صلِّ وسلم على نبينا محمد (١٠٠ مرة)"],
+  istighfar:"أستغفر الله الذي لا إله إلا هو الحي القيوم وأتوب إليه — ١٠٠ مرة",
+  hadith:"سَيِّدُ الِاسْتِغْفَارِ أَنْ تَقُولَ: اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ… فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ",
+  src:"رواه البخاري",
+  explain:"سيد الاستغفار أعظم صيغ طلب المغفرة؛ لأنه يجمع الاعتراف بالنعمة والذنب والتوحيد والرجوع إلى الله.",
+  dua:"اللهم اغفر لي ذنبي كله، دقه وجله، وأوله وآخره، وعلانيته وسره."},
+ {t:"٢ – ٣ صباحًا", start:2, title:"الثلث الأخير يقترب — الدعاء المستجاب",
+  adhkar:["سبحان الله العظيم وبحمده (١٠٠ مرة)","لا إله إلا أنت سبحانك إني كنت من الظالمين (١٠٠ مرة)"],
+  istighfar:"أستغفر الله العظيم — ٢٠٠ مرة على مهل",
+  hadith:"أَقْرَبُ مَا يَكُونُ الْعَبْدُ مِنْ رَبِّهِ وَهُوَ سَاجِدٌ، فَأَكْثِرُوا الدُّعَاءَ",
+  src:"رواه مسلم",
+  explain:"السجود أقرب لحظات العبد من ربه؛ فطوّل سجودك في قيام الليل واسأل الله كل ما في قلبك.",
+  dua:"اللهم إني أسألك الجنة وأعوذ بك من النار، اللهم ارزقني رزقًا حلالًا طيبًا وبارك لي فيه."},
+ {t:"٣ – ٤ صباحًا", start:3, title:"الثلث الأخير — نزول الرحمة",
+  adhkar:["لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير (١٠٠ مرة)","سبحان الملك القدوس (بعد الوتر)"],
+  istighfar:"أستغفر الله وأتوب إليه — ٢٠٠ مرة، فهذا وقت المستغفرين بالأسحار",
+  hadith:"يَنْزِلُ رَبُّنَا تَبَارَكَ وَتَعَالَى كُلَّ لَيْلَةٍ إِلَى السَّمَاءِ الدُّنْيَا حِينَ يَبْقَى ثُلُثُ اللَّيْلِ الْآخِرُ، يَقُولُ: مَنْ يَدْعُونِي فَأَسْتَجِيبَ لَهُ، مَنْ يَسْأَلُنِي فَأُعْطِيَهُ، مَنْ يَسْتَغْفِرُنِي فَأَغْفِرَ لَهُ",
+  src:"متفق عليه — البخاري ومسلم",
+  explain:"في الثلث الأخير من كل ليلة ينادي الله عباده: من يدعوني أستجب له، ومن يستغفرني أغفر له — فلا تحرم نفسك.",
+  dua:"يا رب، ها أنا ذا واقف ببابك في وقتٍ وعدت فيه بالإجابة، فلا تردني خائبًا، واغفر لي وارحمني وارزقني من حيث لا أحتسب."},
+ {t:"٤ – ٥ صباحًا", start:4, title:"وقت السحر — استغفار وقرآن الفجر",
+  adhkar:["قراءة سورة الملك قبل النوم أو في هذا الوقت","أستغفر الله العظيم الذي لا إله إلا هو الحي القيوم وأتوب إليه (١٠٠ مرة)"],
+  istighfar:"استغفار الأسحار — ٢٠٠ مرة، قال تعالى: ﴿وَبِالْأَسْحَارِ هُمْ يَسْتَغْفِرُونَ﴾",
+  hadith:"كَلِمَتَانِ خَفِيفَتَانِ عَلَى اللِّسَانِ، ثَقِيلَتَانِ فِي الْمِيزَانِ، حَبِيبَتَانِ إِلَى الرَّحْمَنِ: سُبْحَانَ اللَّهِ وَبِحَمْدِهِ، سُبْحَانَ اللَّهِ الْعَظِيمِ",
+  src:"متفق عليه — البخاري ومسلم",
+  explain:"كلمتان سهلتان على اللسان لكن أجرهما عظيم يوم القيامة؛ فلا تترك لسانه يفتر عنهما في وقت السحر.",
+  dua:"اللهم اجعل القرآن العظيم ربيع قلبي، ونور صدري، وجلاء حزني، وذهاب همي."},
+ {t:"٥ – ٦ صباحًا", start:5, title:"صلاة الفجر — نور اليوم",
+  adhkar:["أذكار بعد الفجر: لا إله إلا الله وحده لا شريك له (١٠ مرات)","اللهم إني أسألك علمًا نافعًا ورزقًا طيبًا وعملًا متقبلًا","آية الكرسي بعد الصلاة"],
+  istighfar:"أستغفر الله — ١٠٠ مرة بعد الفجر",
+  hadith:"مَنْ صَلَّى الْبَرْدَيْنِ دَخَلَ الْجَنَّةَ",
+  src:"متفق عليه — البخاري ومسلم",
+  explain:"البردان هما الفجر والعصر؛ من حافظ عليهما في وقتهما — وخاصة الفجر في عز النوم — كان له وعد بالجنة.",
+  dua:"اللهم بارك لي في يومي، وافتح لي أبواب رزقك، واجعل أول نهاري صلاحًا وأوسطه فلاحًا وآخره نجاحًا."},
+ {t:"٦ – ٧ صباحًا", start:6, title:"أذكار الصباح — حصن اليوم",
+  adhkar:["أصبحنا وأصبح الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له","حسبي الله لا إله إلا هو، عليه توكلت وهو رب العرش العظيم (٧ مرات)","بسم الله الذي لا يضر مع اسمه شيء في الأرض ولا في السماء وهو السميع العليم (٣ مرات)","رضيت بالله ربًا وبالإسلام دينًا وبمحمد ﷺ نبيًا (٣ مرات)"],
+  istighfar:"أستغفر الله العظيم وأتوب إليه — ١٠٠ مرة",
+  hadith:"لَأَنْ أَقُولَ: سُبْحَانَ اللَّهِ، وَالْحَمْدُ لِلَّهِ، وَلَا إِلَهَ إِلَّا اللَّهُ، وَاللَّهُ أَكْبَرُ، أَحَبُّ إِلَيَّ مِمَّا طَلَعَتْ عَلَيْهِ الشَّمْسُ",
+  src:"رواه مسلم",
+  explain:"هذه الكلمات الأربع أحب إلى النبي ﷺ من الدنيا كلها؛ فابدأ بها صباحك واملأ بها ميزانك.",
+  dua:"اللهم إني أصبحت أشهدك وأشهد حملة عرشك وملائكتك وجميع خلقك أنك أنت الله لا إله إلا أنت، وأن محمدًا عبدك ورسولك."},
+ {t:"٧ – ٨ صباحًا", start:7, title:"الضحى والشكر — ذكر وشكر على النعم",
+  adhkar:["الحمد لله حمدًا كثيرًا طيبًا مباركًا فيه (١٠٠ مرة)","اللهم ما أصبح بي من نعمة أو بأحد من خلقك فمنك وحدك لا شريك لك، فلك الحمد ولك الشكر"],
+  istighfar:"أستغفر الله العظيم — ١٠٠ مرة",
+  hadith:"الطُّهُورُ شَطْرُ الْإِيمَانِ، وَالْحَمْدُ لِلَّهِ تَمْلَأُ الْمِيزَانَ، وَسُبْحَانَ اللَّهِ وَالْحَمْدُ لِلَّهِ تَمْلَآنِ مَا بَيْنَ السَّمَاوَاتِ وَالْأَرْضِ",
+  src:"رواه مسلم",
+  explain:"الحمد لله وحدها تملأ ميزان حسناتك؛ فاشكر الله على نعمة إتمام ليلة كاملة من الطاعة والشغل الحلال.",
+  dua:"اللهم لك الحمد كما ينبغي لجلال وجهك وعظيم سلطانك، اللهم أدم عليَّ نعمك واحفظها من الزوال."},
+ {t:"٨ – ٩ صباحًا", start:8, title:"ختام الوردية — الوتر والدعاء الختامي",
+  adhkar:["خواتيم سورة البقرة: ﴿آمَنَ الرَّسُولُ بِمَا أُنزِلَ إِلَيْهِ مِن رَّبِّهِ وَالْمُؤْمِنُونَ﴾ إلى آخر السورة","اللهم صلِّ وسلم وبارك على نبينا محمد (١٠٠ مرة)"],
+  istighfar:"أستغفر الله العظيم الذي لا إله إلا هو الحي القيوم وأتوب إليه — ١٠٠ مرة ختامًا لليلة",
+  hadith:"إِنَّ اللَّهَ وِتْرٌ يُحِبُّ الْوِتْرَ، فَأَوْتِرُوا يَا أَهْلَ الْقُرْآنِ",
+  src:"متفق عليه — البخاري ومسلم",
+  explain:"الله وتر يحب الوتر؛ فاختم ليلتك بركعة وتر ودعاء خاشع، فهي آخر ما يكون من صلاتك بالليل.",
+  dua:"اللهم تقبل مني ليلتي هذه، واغفر لي ما قصرت فيه، واكتب لي أجر القائمين الذاكرين، وارزقني نومًا هادئًا ويقظة على طاعتك. ربنا آتنا في الدنيا حسنة وفي الآخرة حسنة وقنا عذاب النار."}
+];
+
+/* ============ DATA: VERSES ============ */
+var VERSES = [
+ {text:"﴿وَمِنَ اللَّيْلِ فَتَهَجَّدْ بِهِ نَافِلَةً لَّكَ عَسَىٰ أَن يَبْعَثَكَ رَبُّكَ مَقَامًا مَّحْمُودًا﴾", ref:"سورة الإسراء — آية ٧٩",
+  tafsir:"أمر الله نبيه ﷺ — وهو قدوة لنا — أن يقوم من الليل يصلي تهجدًا زيادة على الفرائض، ووعدَه بالمقام المحمود يوم القيامة. فقيام الليل طريق لرفعة الدرجات."},
+ {text:"﴿كَانُوا قَلِيلًا مِّنَ اللَّيْلِ مَا يَهْجَعُونَ ۝ وَبِالْأَسْحَارِ هُمْ يَسْتَغْفِرُونَ﴾", ref:"سورة الذاريات — آيتا ١٧–١٨",
+  tafsir:"من صفات المحسنين أن نومهم قليل من الليل لانشغالهم بالعبادة، وفي وقت السحر — قبل الفجر — يكثرون من الاستغفار. فاجعل لنفسك نصيبًا من هاتين الصفتين."},
+ {text:"﴿تَتَجَافَىٰ جُنُوبُهُمْ عَنِ الْمَضَاجِعِ يَدْعُونَ رَبَّهُمْ خَوْفًا وَطَمَعًا وَمِمَّا رَزَقْنَاهُمْ يُنفِقُونَ﴾", ref:"سورة السجدة — آية ١٦",
+  tafsir:"المؤمنون تترك جنوبهم الفراش الوثير ليقفوا بين يدي الله يدعونه خوفًا من عقابه وطمعًا في رحمته، وجزاؤهم عند الله ما لا عين رأت ولا أذن سمعت."},
+ {text:"﴿الصَّابِرِينَ وَالصَّادِقِينَ وَالْقَانِتِينَ وَالْمُنفِقِينَ وَالْمُسْتَغْفِرِينَ بِالْأَسْحَارِ﴾", ref:"سورة آل عمران — آية ١٧",
+  tafsir:"عدّ الله من صفات أهل الجنة الاستغفار بالأسحار، أي في آخر الليل قبل الفجر، وهو وقت نزول الرحمة واستجابة الدعاء."},
+ {text:"﴿وَالَّذِينَ يَبِيتُونَ لِرَبِّهِمْ سُجَّدًا وَقِيَامًا﴾", ref:"سورة الفرقان — آية ٦٤",
+  tafsir:"من صفات عباد الرحمن أنهم يقضون ليلهم بين سجود وقيام لربهم، لا سهرًا في لغو ولا غفلة. فالليل عندهم موسم طاعة لا موسم لهو."}
+];
+
+/* ============ HELPERS ============ */
+function $(id){return document.getElementById(id)}
+function toAr(n){return String(n).replace(/\d/g,function(d){return "٠١٢٣٤٥٦٧٨٩"[d]})}
+function pad(n){return (n<10?"0":"")+n}
+function fmtTime(d){return toAr(pad(d.getHours()))+":"+toAr(pad(d.getMinutes()))+":"+toAr(pad(d.getSeconds()))}
+function fmtHM(mins){var h=Math.floor(mins/60),m=mins%60;return toAr(h)+" ساعة و "+toAr(m)+" دقيقة"}
+function esc(s){var d=document.createElement("div");d.textContent=s;return d.innerHTML}
+
+/* ============ BUILD HOURS TIMELINE ============ */
+function currentHourIndex(){
+  var h=new Date().getHours();
+  if(h>=21) return h-21;
+  if(h<9) return h+3;
+  return -1;
+}
+function buildTimeline(){
+  var tl=$("timeline"); tl.innerHTML="";
+  HOURS.forEach(function(hr,i){
+    var card=document.createElement("div");
+    card.className="hour-card"; card.id="hour-"+i;
+    var chips=hr.adhkar.map(function(a){return '<span class="chip">'+esc(a)+"</span>"}).join("");
+    card.innerHTML=
+      '<button class="hour-head" type="button" aria-expanded="false">'+
+        '<span class="hour-time">'+hr.t+'</span>'+
+        '<span class="hour-title">'+esc(hr.title)+'</span>'+
+        '<span class="now-badge">الآن</span>'+
+        '<span class="hour-arrow">▾</span>'+
+      '</button>'+
+      '<div class="hour-body">'+
+        '<div class="block"><h4>📿 الأذكار</h4><div class="chips">'+chips+'</div></div>'+
+        '<div class="block"><h4>🤲 الاستغفار</h4><p>'+esc(hr.istighfar)+'</p></div>'+
+        '<div class="block"><h4>📖 حديث صحيح</h4><p class="hadith-text">قال رسول الله ﷺ: «'+esc(hr.hadith)+'»</p><span class="src">المصدر: '+esc(hr.src)+'</span><p class="explain"><b>شرح مبسط:</b> '+esc(hr.explain)+'</p></div>'+
+        '<div class="block"><h4>🌙 دعاء الفقرة</h4><p class="dua">'+esc(hr.dua)+'</p></div>'+
+      '</div>';
+    card.querySelector(".hour-head").addEventListener("click",function(){
+      var open=card.classList.toggle("open");
+      this.setAttribute("aria-expanded",open);
+    });
+    tl.appendChild(card);
+  });
+  markCurrentHour();
+}
+function markCurrentHour(){
+  var idx=currentHourIndex();
+  document.querySelectorAll(".hour-card").forEach(function(c,i){
+    c.classList.toggle("current", i===idx);
+    if(i===idx) c.classList.add("open");
+  });
+  if(idx>=0){
+    $("curHourVal").textContent=HOURS[idx].title.split("—")[0].trim()||HOURS[idx].title;
+    $("curHourVal").textContent=HOURS[idx].t;
+    $("curHourSub").textContent=HOURS[idx].title;
+  }else{
+    $("curHourVal").textContent="بره الوردية";
+    $("curHourSub").textContent="الوردية تبدأ ٩ مساءً";
+  }
+}
+
+/* ============ BUILD VERSES ============ */
+function buildVerses(){
+  var box=$("versesList"); box.innerHTML="";
+  VERSES.forEach(function(v){
+    var d=document.createElement("div"); d.className="verse-card";
+    d.innerHTML='<p class="quran">'+esc(v.text)+'</p><div class="ref">'+esc(v.ref)+'</div><p class="tafsir"><b>تفسير مبسط:</b> '+esc(v.tafsir)+'</p>';
+    box.appendChild(d);
+  });
+}
+
+/* ============ PRAYER TIMES (Cairo, astronomical) ============ */
+function dtr(d){return d*Math.PI/180} function rtd(r){return r*180/Math.PI}
+function fixAngle(a){a=a%360; if(a<0)a+=360; return a}
+function fixHour(a){a=a%24; if(a<0)a+=24; return a}
+function julian(y,m,d){if(m<=2){y-=1;m+=12} var A=Math.floor(y/100),B=2-A+Math.floor(A/4); return Math.floor(365.25*(y+4716))+Math.floor(30.6001*(m+1))+d+B-1524.5}
+function sunPosition(jd){
+  var D=jd-2451545.0, g=fixAngle(357.529+0.98560028*D), q=fixAngle(280.459+0.98564736*D),
+      L=fixAngle(q+1.915*Math.sin(dtr(g))+0.020*Math.sin(dtr(2*g))), e=23.439-0.00000036*D,
+      RA=rtd(Math.atan2(Math.cos(dtr(e))*Math.sin(dtr(L)),Math.cos(dtr(L))))/15,
+      decl=rtd(Math.asin(Math.sin(dtr(e))*Math.sin(dtr(L)))), EqT=q/15-fixHour(RA);
+  return {decl:decl, eq:EqT};
+}
+function calcPrayers(){
+  var now=new Date(), lat=30.0444, lng=31.2357, tz=2; // Cairo, UTC+2
+  var jd=julian(now.getFullYear(),now.getMonth()+1,now.getDate())-lng/(15*24);
+  var sun=sunPosition(jd), decl=sun.decl, eq=sun.eq;
+  function midDay(){return fixHour(12-eq)}
+  function sunAngleTime(angle,dir){
+    var cosT=(-Math.sin(dtr(angle))-Math.sin(dtr(decl))*Math.sin(dtr(lat)))/(Math.cos(dtr(decl))*Math.cos(dtr(lat)));
+    if(cosT<-1||cosT>1) return null;
+    var t=rtd(Math.acos(cosT))/15;
+    return dir==="ccw"? midDay()-t : midDay()+t;
+  }
+  function asrTime(factor){
+    var angle=rtd(Math.atan(1/(factor+Math.tan(dtr(Math.abs(lat-decl))))));
+    var cosT=(Math.sin(dtr(angle))-Math.sin(dtr(decl))*Math.sin(dtr(lat)))/(Math.cos(dtr(decl))*Math.cos(dtr(lat)));
+    if(cosT<-1||cosT>1) return null;
+    return midDay()+rtd(Math.acos(cosT))/15;
+  }
+  function adjust(t){return t+tz-lng/15}
+  var times={
+    "الفجر": adjust(sunAngleTime(19.5,"ccw")),
+    "الشروق": adjust(sunAngleTime(0.833,"ccw")),
+    "الظهر": adjust(midDay()),
+    "العصر": adjust(asrTime(1)),
+    "المغرب": adjust(sunAngleTime(0.833,"cw")),
+    "العشاء": adjust(sunAngleTime(17.5,"cw"))
+  };
+  return times;
+}
+var prayerTimes=null, prayerList=[];
+function buildPrayers(){
+  prayerTimes=calcPrayers(); prayerList=[];
+  var grid=$("prayerGrid"); grid.innerHTML="";
+  Object.keys(prayerTimes).forEach(function(name){
+    var t=prayerTimes[name]; if(t===null||isNaN(t)) return;
+    var h=Math.floor(t), m=Math.floor((t-h)*60);
+    var d=new Date(); d.setHours(h,m,0,0);
+    prayerList.push({name:name,date:d});
+    var card=document.createElement("div"); card.className="prayer-card"; card.dataset.name=name;
+    var dispH=h%12; if(dispH===0)dispH=12;
+    var per=h<12?"صباحًا":"مساءً";
+    card.innerHTML='<div class="pname">'+name+'</div><div class="ptime">'+toAr(pad(dispH))+":"+toAr(pad(m))+'</div><div style="color:var(--muted);font-size:14px">'+per+'</div><span class="ptag">القادمة</span>';
+    grid.appendChild(card);
+  });
+}
+function nextPrayer(){
+  var now=new Date();
+  for(var i=0;i<prayerList.length;i++){ if(prayerList[i].date>now) return prayerList[i]; }
+  if(prayerList.length){ var f={name:prayerList[0].name, date:new Date(prayerList[0].date.getTime()+86400000)}; return f; }
+  return null;
+}
+
+/* ============ CLOCK + SHIFT + COUNTDOWNS ============ */
+/* ============ FIREBASE (Auth + Firestore) ============ */
+var firebaseConfig = {
+  apiKey: "AIzaSyA_O59BOzI8NeIQvavnxXpFOKNGyN5xxC0",
+  authDomain: "wardiyat-allayl.firebaseapp.com",
+  projectId: "wardiyat-allayl",
+  storageBucket: "wardiyat-allayl.firebasestorage.app",
+  messagingSenderId: "462423211164",
+  appId: "1:462423211164:web:d456d2adad1b30b6298159"
+};
+var fbAuth=null, fbDb=null, fbReady=false;
+try{
+  if(typeof firebase!=="undefined"){
+    firebase.initializeApp(firebaseConfig);
+    fbAuth=firebase.auth();
+    fbDb=firebase.firestore();
+    fbReady=true;
+  }
+}catch(e){ fbReady=false; }
+
+var currentUser=null; // {uid, name, email}
+var myStats={tasbeeh:0, msgs:0};
+var unsubChat=null, unsubRank=null;
+var pendingTasbeeh=0, flushTimer=null;
+var pendingName=null;
+
+function lbScore(e){ return (e.tasbeeh||0) + (e.msgs||0)*5; }
+
+function showFbAlert(txt){ var a=$("fbAlert"); if(!a) return; a.textContent=txt; a.classList.add("show"); }
+function showFbError(err){
+  if(err && (err.code==="permission-denied" || (err.message && err.message.indexOf("permission")>=0))){
+    showFbAlert("قاعدة البيانات لسه مقفولة: Firestore في وضع الإنتاج وبيرفض القراءة والكتابة لحد ما تتنشر قواعد الأمان. التعليمات والقواعد المطلوبة موجودة تحت الشات في قسم «قواعد Firestore المطلوبة» — بمجرد نشرها الشات والترتيب هيشتغلوا فورًا.");
+    var rb=$("rulesBox"); if(rb) rb.open=true;
+  }else if(err){
+    showFbAlert("حصلت مشكلة في الاتصال بقاعدة البيانات — تأكد من اتصال الإنترنت وحدّث الصفحة وحاول تاني.");
+  }
+}
+
+/* ============ RANKING (Firestore, shared by all users) ============ */
+function renderRanking(users){
+  var list=$("rankList"), empty=$("rankEmpty");
+  if(!list||!empty) return;
+  list.innerHTML="";
+  var act=(users||[]).filter(function(u){ return (u.tasbeeh||0)>0 || (u.msgs||0)>0; });
+  act.sort(function(a,b){ return lbScore(b)-lbScore(a) || (b.tasbeeh||0)-(a.tasbeeh||0); });
+  if(!act.length){
+    empty.style.display="block";
+    empty.innerHTML=currentUser
+      ? "الترتيب فاضي تمامًا.<br/>أول ما مستخدم حقيقي يسبّح أو يبعت رسالة، اسمه هيظهر هنا فورًا — مفيش أي أسماء أو نقاط جاهزة."
+      : "سجّل دخولك بالإيميل في <a href=\"#chat\">قسم الشات</a> عشان تشوف الترتيب المشترك بين كل المستخدمين.";
+    $("rankTopName").textContent="الترتيب فاضي — لسه محدش سبّح أو كتب";
+    $("rankTopSub").textContent="سجّل دخولك بالإيميل في قسم الشات، وابدأ التسبيح من السبحة فوق، واسمك هيظهر هنا بنشاطك الحقيقي بس.";
+    return;
+  }
+  empty.style.display="none";
+  var top=act[0];
+  $("rankTopName").textContent="👑 المتصدر الآن: "+top.name;
+  $("rankTopSub").textContent="بـ "+toAr(lbScore(top))+" نقطة — "+toAr(top.tasbeeh||0)+" تسبيحة و "+toAr(top.msgs||0)+" رسالة في الشات.";
+  act.forEach(function(u,i){
+    var li=document.createElement("li");
+    var me=currentUser && u.uid===currentUser.uid;
+    li.className="rank-item"+(me?" me":"");
+    var medal=i===0?"👑":(i===1?"🥈":(i===2?"🥉":toAr(i+1)));
+    li.innerHTML='<span class="rank-pos">'+medal+'</span><span class="rank-name">'+esc(u.name||"")+(me?' <small>أنت</small>':'')+'<small>'+toAr(u.tasbeeh||0)+' تسبيحة • '+toAr(u.msgs||0)+' رسالة</small></span><span class="rank-score"><b>'+toAr(lbScore(u))+'</b><span>نقطة</span></span>';
+    list.appendChild(li);
+  });
+}
+function subscribeRanking(){
+  if(unsubRank||!fbReady||!currentUser) return;
+  unsubRank=fbDb.collection("users").orderBy("score","desc").limit(50).onSnapshot(function(snap){
+    var users=[]; snap.forEach(function(d){ var x=d.data(); x.uid=d.id; users.push(x); });
+    renderRanking(users);
+  }, function(err){ showFbError(err); });
+}
+function bumpStats(delta){
+  if(!currentUser||!fbReady) return;
+  var inc=firebase.firestore.FieldValue.increment;
+  var upd={updatedAt:firebase.firestore.FieldValue.serverTimestamp()};
+  var scoreDelta=0;
+  if(delta.tasbeeh){ upd.tasbeeh=inc(delta.tasbeeh); scoreDelta+=delta.tasbeeh; myStats.tasbeeh+=delta.tasbeeh; }
+  if(delta.msgs){ upd.msgs=inc(delta.msgs); scoreDelta+=delta.msgs*5; myStats.msgs+=delta.msgs; }
+  if(scoreDelta) upd.score=inc(scoreDelta);
+  fbDb.collection("users").doc(currentUser.uid).update(upd).catch(function(){
+    fbDb.collection("users").doc(currentUser.uid).set({name:currentUser.name, email:currentUser.email, tasbeeh:myStats.tasbeeh, msgs:myStats.msgs, score:lbScore(myStats)},{merge:true}).catch(showFbError);
+  });
+}
+function queueTasbeeh(){
+  if(!currentUser||!fbReady) return;
+  pendingTasbeeh++;
+  if(!flushTimer) flushTimer=setTimeout(flushTasbeeh,2000);
+}
+function flushTasbeeh(){
+  if(flushTimer){ clearTimeout(flushTimer); flushTimer=null; }
+  if(pendingTasbeeh>0){ var n=pendingTasbeeh; pendingTasbeeh=0; bumpStats({tasbeeh:n}); }
+}
+
+function tick(){
+  var now=new Date();
+  $("clockNow").textContent=fmtTime(now);
+  var ct=$("clockTop"); if(ct) ct.textContent=fmtTime(now);
+  try{ var ds=now.toLocaleDateString("ar-EG",{weekday:"long", day:"numeric", month:"long", year:"numeric"}); $("dateNow").textContent=ds; var dt=$("dateTop"); if(dt) dt.textContent=ds; }catch(e){ $("dateNow").textContent=""; }
+
+  // Shift 21:00 -> 09:00
+  var mins=now.getHours()*60+now.getMinutes()+now.getSeconds()/60;
+  var inShift = mins>=21*60 || mins<9*60;
+  if(inShift){
+    var elapsed = mins>=21*60 ? mins-21*60 : mins+3*60;
+    var remain = 12*60-elapsed;
+    $("shiftLbl").textContent="المتبقي على نهاية الوردية";
+    $("shiftVal").textContent=fmtHM(Math.floor(remain));
+    $("shiftSub").textContent="عدى من الوردية "+fmtHM(Math.floor(elapsed));
+    $("progressTitle").textContent="تقدّم الوردية — إنت في الساعة رقم "+toAr(Math.floor(elapsed/60)+1)+" من ١٢";
+    var pct=Math.round(elapsed/(12*60)*100);
+    $("progressPct").textContent=toAr(pct)+"٪";
+    $("progressFill").style.width=pct+"%";
+    var tp=$("shiftTopPill"); if(tp) tp.textContent="⏳ المتبقي على نهاية الوردية: "+fmtHM(Math.floor(remain));
+    var ts=$("shiftTopState"); if(ts) ts.textContent="✅ الوردية شغالة الآن";
+    var th=$("shiftTopHour"); if(th) th.textContent="الساعة "+toAr(Math.floor(elapsed/60)+1)+" من ١٢";
+  }else{
+    var toStart=21*60-mins;
+    $("shiftLbl").textContent="الوردية تبدأ بعد";
+    $("shiftVal").textContent=fmtHM(Math.floor(toStart));
+    $("shiftSub").textContent="دلوقتي بره وقت الوردية — تبدأ ٩ مساءً";
+    $("progressTitle").textContent="الوردية لم تبدأ بعد — تبدأ ٩ مساءً";
+    $("progressPct").textContent="٠٪";
+    $("progressFill").style.width="0%";
+    var tp2=$("shiftTopPill"); if(tp2) tp2.textContent="⏳ الوردية تبدأ بعد: "+fmtHM(Math.floor(toStart));
+    var ts2=$("shiftTopState"); if(ts2) ts2.textContent="الوردية ٩ مساءً – ٩ صباحًا";
+    var th2=$("shiftTopHour"); if(th2) th2.textContent="بره وقت الوردية";
+  }
+
+  // Next prayer countdown
+  var np=nextPrayer();
+  if(np){
+    var diff=np.date-now, hh=Math.floor(diff/3600000), mm=Math.floor(diff%3600000/60000), ss=Math.floor(diff%60000/1000);
+    $("nextPrayerVal").textContent=np.name;
+    $("nextPrayerSub").textContent="بعد "+toAr(hh)+":"+toAr(pad(mm))+":"+toAr(pad(ss));
+    document.querySelectorAll(".prayer-card").forEach(function(c){ c.classList.toggle("next", c.dataset.name===np.name); });
+  }
+  markCurrentHourLight();
+}
+var lastHourIdx=-99;
+function markCurrentHourLight(){
+  var idx=currentHourIndex();
+  if(idx!==lastHourIdx){ lastHourIdx=idx; markCurrentHour(); if(idx>=0){ var el=$("hour-"+idx); if(el && !el.classList.contains("open")) el.classList.add("open"); } }
+}
+
+/* ============ NOTIFICATIONS ============ */
+function notifInit(){
+  var btn=$("notifBtn"), st=$("notifStatus");
+  function refresh(){
+    if(!("Notification" in window)){ st.textContent="المتصفح ده لا يدعم الإشعارات"; btn.disabled=true; return; }
+    if(Notification.permission==="granted"){ st.textContent="✅ الإشعارات مفعّلة"; btn.textContent="إرسال إشعار تجريبي"; }
+    else if(Notification.permission==="denied"){ st.textContent="الإشعارات مرفوضة من إعدادات المتصفح"; btn.textContent="تفعيل الإشعارات"; }
+    else { st.textContent="الإشعارات غير مفعّلة بعد"; btn.textContent="تفعيل الإشعارات"; }
+  }
+  btn.addEventListener("click",function(){
+    if(!("Notification" in window)) return;
+    if(Notification.permission==="granted"){
+      new Notification("وردية الليل 🌙",{body:"الإشعارات شغالة. هتوصلك تنبيهات الفقرات والصلاة بإذن الله."});
+      return;
+    }
+    Notification.requestPermission().then(function(p){
+      refresh();
+      if(p==="granted") new Notification("وردية الليل 🌙",{body:"تم تفعيل الإشعارات بنجاح. تقبل الله منك."});
+    });
+  });
+  refresh();
+}
+
+/* ============ TASBEEH ============ */
+var DHIKRS=["سبحان الله","الحمد لله","الله أكبر","لا إله إلا الله","أستغفر الله","سبحان الله وبحمده","اللهم صلِّ على محمد"];
+var tas={idx:0,count:0,total:0,goal:33};
+function buildTasbeeh(){
+  var tabs=$("dhikrTabs");
+  DHIKRS.forEach(function(d,i){
+    var b=document.createElement("button"); b.type="button"; b.textContent=d; if(i===0)b.classList.add("active");
+    b.addEventListener("click",function(){
+      tas.idx=i; tas.count=0;
+      tabs.querySelectorAll("button").forEach(function(x){x.classList.remove("active")});
+      b.classList.add("active"); renderTas();
+    });
+    tabs.appendChild(b);
+  });
+  $("tasBtn").addEventListener("click",function(){
+    tas.count++; tas.total++;
+    queueTasbeeh();
+    if(tas.count>=tas.goal){ tas.count=0; if(navigator.vibrate) navigator.vibrate(120); }
+    renderTas();
+  });
+  $("tasReset").addEventListener("click",function(){ tas.count=0; renderTas(); });
+  $("tasGoal").addEventListener("click",function(){ tas.goal=tas.goal===33?100:33; tas.count=0; renderTas(); });
+  renderTas();
+}
+function renderTas(){
+  $("tasCount").textContent=toAr(tas.count);
+  $("tasTarget").textContent="الذكر: "+DHIKRS[tas.idx]+" — الهدف: "+toAr(tas.goal);
+  $("tasTotal").textContent=toAr(tas.total);
+}
+
+/* ============ AUTH + CHAT (Firebase) ============ */
+var authMode="login";
+function setAuthMsg(txt,kind){ var el=$("authMsg"); if(!el) return; el.textContent=txt; el.className="form-msg"+(kind?" "+kind:""); }
+function authErrText(code){
+  switch(code){
+    case "auth/email-already-in-use": return "الإيميل ده مسجّل قبل كده — جرّب تسجيل الدخول بيه.";
+    case "auth/invalid-email": return "الإيميل مكتوب غلط — راجعه وحاول تاني.";
+    case "auth/weak-password": return "كلمة السر ضعيفة — لازم ٦ حروف أو أرقام على الأقل.";
+    case "auth/user-not-found": return "مفيش حساب بالإيميل ده — اعمل حساب جديد الأول.";
+    case "auth/wrong-password": return "كلمة السر غلط — راجعها وحاول تاني.";
+    case "auth/invalid-credential": return "الإيميل أو كلمة السر غلط — راجعهم وحاول تاني.";
+    case "auth/too-many-requests": return "محاولات كتير ورا بعض — استنى شوية وحاول تاني.";
+    case "auth/network-request-failed": return "مشكلة في الاتصال بالإنترنت — حاول تاني.";
+    default: return "حصلت مشكلة — حاول تاني.";
+  }
+}
+function setAuthMode(m){
+  authMode=m;
+  $("tabLogin").classList.toggle("active", m==="login");
+  $("tabRegister").classList.toggle("active", m==="register");
+  $("nameField").style.display=(m==="register")?"block":"none";
+  $("authBtn").textContent=(m==="register")?"إنشاء الحساب ودخول الشات":"تسجيل الدخول";
+  $("passInput").setAttribute("autocomplete", (m==="register")?"new-password":"current-password");
+  setAuthMsg("","");
+}
+function doAuth(){
+  var email=$("emailInput").value.trim(), pass=$("passInput").value;
+  if(!email || email.indexOf("@")<0){ setAuthMsg("اكتب بريدًا إلكترونيًا صحيحًا.","err"); return; }
+  if(!pass || pass.length<6){ setAuthMsg("كلمة السر لازم ٦ حروف أو أرقام على الأقل.","err"); return; }
+  var btn=$("authBtn"); btn.disabled=true; setAuthMsg("جارٍ التنفيذ…","");
+  if(authMode==="register"){
+    var name=$("nameInput").value.trim();
+    if(name.length<2){ setAuthMsg("اكتب اسمك (حرفين على الأقل) — هو اللي هيظهر في الشات والترتيب.","err"); btn.disabled=false; return; }
+    pendingName=name;
+    fbAuth.createUserWithEmailAndPassword(email,pass).then(function(){
+      setAuthMsg("تم إنشاء حسابك وتسجيل دخولك ✓","ok"); btn.disabled=false;
+    }).catch(function(err){ pendingName=null; btn.disabled=false; setAuthMsg(authErrText(err.code),"err"); });
+  }else{
+    fbAuth.signInWithEmailAndPassword(email,pass).then(function(){
+      setAuthMsg("تم تسجيل الدخول ✓","ok"); btn.disabled=false;
+    }).catch(function(err){ btn.disabled=false; setAuthMsg(authErrText(err.code),"err"); });
+  }
+}
+function doReset(){
+  var email=$("emailInput").value.trim();
+  if(!email || email.indexOf("@")<0){ setAuthMsg("اكتب إيميلك فوق الأول، وبعدين دوس «نسيت كلمة السر».","err"); return; }
+  fbAuth.sendPasswordResetEmail(email).then(function(){
+    setAuthMsg("اتبعت رابط تغيير كلمة السر على إيميلك — افتح الإيميل واتبع الرابط.","ok");
+  }).catch(function(err){ setAuthMsg(authErrText(err.code),"err"); });
+}
+function saveName(){
+  var nm=$("editNameInput").value.trim();
+  if(nm.length<2 || !currentUser || !fbReady) return;
+  fbDb.collection("users").doc(currentUser.uid).update({name:nm}).then(function(){
+    currentUser.name=nm;
+    $("welcomeAvatar").textContent=nm.charAt(0);
+    $("welcomeText").textContent="أهلًا بيك يا "+nm+" 🌙";
+    $("editNameRow").style.display="none";
+  }).catch(showFbError);
+}
+function setLoggedIn(){
+  $("authBox").style.display="none";
+  $("welcomeBox").classList.add("show");
+  $("welcomeAvatar").textContent=(currentUser.name||"؟").charAt(0);
+  $("welcomeText").textContent="أهلًا بيك يا "+currentUser.name+" 🌙";
+  $("welcomeEmail").textContent=currentUser.email||"";
+  var ci=$("chatInput"); ci.disabled=false; ci.placeholder="اكتب رسالتك هنا…"; $("sendBtn").disabled=false;
+  tas.total=myStats.tasbeeh; renderTas();
+  subscribeChat();
+  subscribeRanking();
+}
+function setLoggedOut(){
+  currentUser=null; myStats={tasbeeh:0, msgs:0};
+  if(unsubChat){ unsubChat(); unsubChat=null; }
+  if(unsubRank){ unsubRank(); unsubRank=null; }
+  $("welcomeBox").classList.remove("show");
+  $("authBox").style.display="block";
+  var ci=$("chatInput"); ci.disabled=true; ci.placeholder="سجّل دخولك الأول عشان تبعت…"; $("sendBtn").disabled=true;
+  $("chatMsgs").innerHTML='<div class="chat-empty">سجّل دخولك بالإيميل عشان تشوف الشات الجماعي وتشارك فيه.<br/>الشات بيبدأ فاضي تمامًا، وبيظهر فيه فقط رسائل حقيقية كتبها مستخدمون حقيقيون، وبتتحفظ وبتوصل لكل المستخدمين على كل الأجهزة.</div>';
+  renderRanking([]);
+}
+function subscribeChat(){
+  if(unsubChat||!fbReady||!currentUser) return;
+  unsubChat=fbDb.collection("messages").orderBy("createdAt","desc").limit(100).onSnapshot(function(snap){
+    var msgs=[]; snap.forEach(function(d){ msgs.push(d.data()); });
+    msgs.reverse();
+    renderChat(msgs);
+  }, function(err){ showFbError(err); });
+}
+function renderChat(msgs){
+  var box=$("chatMsgs"); box.innerHTML="";
+  if(!msgs.length){
+    box.innerHTML='<div class="chat-empty">الشات فاضي تمامًا — لسه مفيش أي رسائل.<br/>اكتب أول رسالة حقيقية، وهتظهر هنا باسمك ووقتها، وتتحفظ وتوصل لكل المستخدمين.</div>';
+    return;
+  }
+  msgs.forEach(function(m){
+    var d=document.createElement("div");
+    var mine=currentUser && m.uid===currentUser.uid;
+    d.className="msg"+(mine?" mine":"");
+    var t=(m.createdAt && m.createdAt.toDate) ? m.createdAt.toDate() : new Date();
+    var timeStr=toAr(pad(t.getHours()))+":"+toAr(pad(t.getMinutes()));
+    d.innerHTML='<div class="mname">'+esc(m.name||"")+'</div><div>'+esc(m.text||"")+'</div><div class="mtime">'+timeStr+'</div>';
+    box.appendChild(d);
+  });
+  box.scrollTop=box.scrollHeight;
+}
+function sendChat(){
+  var ci=$("chatInput"), txt=ci.value.trim();
+  if(!txt || !currentUser || !fbReady) return;
+  ci.value="";
+  fbDb.collection("messages").add({
+    uid: currentUser.uid,
+    name: currentUser.name,
+    text: txt,
+    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+  }).then(function(){
+    bumpStats({msgs:1});
+  }).catch(function(err){ showFbError(err); ci.value=txt; });
+}
+function authInit(){
+  var cb=$("copyRulesBtn");
+  if(cb) cb.addEventListener("click",function(){
+    var txt=$("rulesCode").textContent;
+    function done(){ $("copyRulesMsg").textContent="اتنسخت القواعد ✓"; }
+    function fallback(){
+      var ta=document.createElement("textarea"); ta.value=txt; document.body.appendChild(ta); ta.select();
+      try{ document.execCommand("copy"); }catch(e){}
+      ta.remove(); done();
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done).catch(fallback); }
+    else fallback();
+  });
+
+  if(!fbReady){
+    showFbAlert("تعذّر تحميل مكتبات Firebase — تأكد من اتصالك بالإنترنت وحدّث الصفحة، وبعدها التسجيل والشات والترتيب هيشتغلوا.");
+    var ab=$("authBtn"); if(ab) ab.disabled=true;
+    return;
+  }
+  setAuthMode("login");
+  $("tabLogin").addEventListener("click",function(){ setAuthMode("login"); });
+  $("tabRegister").addEventListener("click",function(){ setAuthMode("register"); });
+  $("authBtn").addEventListener("click",doAuth);
+  $("emailInput").addEventListener("keydown",function(e){ if(e.key==="Enter") doAuth(); });
+  $("passInput").addEventListener("keydown",function(e){ if(e.key==="Enter") doAuth(); });
+  $("nameInput").addEventListener("keydown",function(e){ if(e.key==="Enter") doAuth(); });
+  $("resetBtn").addEventListener("click",doReset);
+  $("logoutBtn").addEventListener("click",function(){ flushTasbeeh(); fbAuth.signOut(); });
+  $("editNameBtn").addEventListener("click",function(){
+    var r=$("editNameRow");
+    r.style.display=(r.style.display==="none")?"flex":"none";
+    $("editNameInput").value=currentUser?currentUser.name:"";
+  });
+  $("saveNameBtn").addEventListener("click",saveName);
+  $("sendBtn").addEventListener("click",sendChat);
+  $("chatInput").addEventListener("keydown",function(e){ if(e.key==="Enter") sendChat(); });
+  document.addEventListener("visibilitychange",function(){ if(document.hidden) flushTasbeeh(); });
+  window.addEventListener("beforeunload",flushTasbeeh);
+
+  fbAuth.onAuthStateChanged(function(user){
+    if(!user){ setLoggedOut(); return; }
+    var ref=fbDb.collection("users").doc(user.uid);
+    ref.get().then(function(doc){
+      if(doc.exists){
+        var d=doc.data();
+        myStats={tasbeeh:d.tasbeeh||0, msgs:d.msgs||0};
+        currentUser={uid:user.uid, name:d.name||(user.email||"").split("@")[0], email:user.email};
+      }else{
+        var nm=pendingName || (user.email||"").split("@")[0];
+        currentUser={uid:user.uid, name:nm, email:user.email};
+        myStats={tasbeeh:0, msgs:0};
+        ref.set({name:nm, email:user.email, tasbeeh:0, msgs:0, score:0, createdAt:firebase.firestore.FieldValue.serverTimestamp()}).catch(showFbError);
+      }
+      pendingName=null;
+      setLoggedIn();
+    }).catch(function(err){
+      currentUser={uid:user.uid, name:(user.email||"").split("@")[0], email:user.email};
+      showFbError(err);
+      setLoggedIn();
+    });
+  });
+}
+
+/* ============ INIT ============ */
+buildTimeline();
+buildVerses();
+buildPrayers();
+buildTasbeeh();
+renderRanking([]);
+notifInit();
+authInit();
+tick();
+setInterval(tick,1000);
+setInterval(buildPrayers, 3600000);
+// The current hour is marked and opened in place — the page itself stays at the top, on the shift clock.
+</script>
+</body>
+</html>
